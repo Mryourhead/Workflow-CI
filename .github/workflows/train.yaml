@@ -23,7 +23,7 @@ jobs:
       - name: Check Env
         run: |
           python --version
-          ls MLproject
+          ls MLProject
           
       - name: Install dependencies
         run: |
