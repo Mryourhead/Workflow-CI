@@ -1,0 +1,34 @@
+cat <<EOF > .github/workflows/train.yaml
+name: CI/CD MLflow netflixmovie
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.7"
+
+      - name: Install dependencies
+        run: |
+          pip install mlflow==2.19.0 pandas scikit-learn
+
+      - name: Run MLflow Project
+        run: |
+          # Menjalankan MLflow dari folder MLProject
+          mlflow run ./MLProject --env-manager=local
+
+      - name: Upload MLflow Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-artifacts
+          path: mlruns/
+EOF
