@@ -32,7 +32,7 @@ def main():
     # 4. Manual Logging
     # mlflow.set_experiment("Eksperimen_Tuning_Netflix")
     
-    with mlflow.start_run(run_name="Manual_Logging_Tuning", nested=true):
+    with mlflow.start_run(run_name="Manual_Logging_Tuning", nested=True):
         print("Sedang melakukan tuning... mohon tunggu.")
         grid_search.fit(X_train, y_train)
         
@@ -54,3 +54,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
