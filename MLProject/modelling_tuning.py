@@ -30,9 +30,9 @@ def main():
     grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=3)
 
     # 4. Manual Logging
-    mlflow.set_experiment("Eksperimen_Tuning_Netflix")
+    # mlflow.set_experiment("Eksperimen_Tuning_Netflix")
     
-    with mlflow.start_run(run_name="Manual_Logging_Tuning"):
+    with mlflow.start_run(run_name="Manual_Logging_Tuning", nested=true):
         print("Sedang melakukan tuning... mohon tunggu.")
         grid_search.fit(X_train, y_train)
         
@@ -52,4 +52,5 @@ def main():
         print(f"Tuning selesai! R2 Score: {r2:.4f}")
 
 if __name__ == "__main__":
+
     main()
